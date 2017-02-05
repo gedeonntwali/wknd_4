@@ -4,7 +4,7 @@
 # DRY up all the code below - there shouldn't be a single method duplicated between
 # any two classes.
 
-class SimpleCalculator
+module Calculators
 
   def add(first_number, second_number)
     first_number + second_number
@@ -24,23 +24,12 @@ class SimpleCalculator
 
 end
 
+class SimpleCalculator
+  include Calculators
+end
+
 class FancyCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
+  include Calculators
 
   def square_root(number)
     Math.sqrt(number)
@@ -49,26 +38,7 @@ class FancyCalculator
 end
 
 class WhizBangCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
-
-  def square_root(number)
-    Math.sqrt(number)
-  end
+  include Calculators
 
   def hypotenuse(first_number, second_number)
     Math.hypot(first_number, second_number)
@@ -84,3 +54,62 @@ end
 
 # Copy your driver code from the previous exercise and more below:
 
+puts "Testing fancy_calculator"
+puts
+
+fancy_calculator = FancyCalculator.new
+
+result = fancy_calculator.add(3,5)
+if result == 8
+  puts "PASS"
+else 
+  puts "FAIL"
+end
+
+result = fancy_calculator.subtract(6,2)
+if result == 4
+  puts "PASS"
+else 
+  puts "FAIL"
+end
+
+result = fancy_calculator.multiply(3,4)
+if result == 20
+  puts "PASS"
+else
+  puts "FAIL"
+end
+
+result = fancy_calculator.divide(10,2)
+if result == 7
+  puts "PASS"
+else
+  puts "FAIL"
+end
+
+result = fancy_calculator.square_root(16)
+if result == 4
+  puts "PASS"
+else
+  puts "FAIL"
+end
+
+puts "Testing Whiz Bang Calculator"
+puts
+
+whiz_bang_calculator = WhizBangCalculator.new
+
+result = whiz_bang_calculator.hypotenuse(3,4)
+if result == 5
+  puts "TRUE"
+else
+  puts "FALSE"
+end
+
+result =whiz_bang_calculator.exponent(4,2)
+puts result
+if result == 16
+  puts "TRUE"
+else
+  puts "FALSE"
+end
