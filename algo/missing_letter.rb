@@ -4,6 +4,22 @@
 
 def find_missing_letter(range)
 
+  given_letters = range.split("")
+  all_letters = (given_letters[0]..given_letters[-1]).to_a
+
+  all_letters.each do |letter|
+    if given_letters.include?(letter) 
+
+    elsif not given_letters.include?(letter)
+      return letter
+    end
+    
+    if given_letters == all_letters
+      return nil
+    end
+  end
+
+
 end
 
 # Driver code - don't touch anything below this line.
